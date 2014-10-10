@@ -88,7 +88,7 @@ integer :: i,stat,j,k
 real, dimension(3) :: meanX,meanX2,meanP,meanP2,meanXP,xVect,pVect
 real, dimension(3) :: sigmaX, gammaXP, etaP, etaP0
 real, allocatable :: time(:)
-real :: x1, x2, vz
+real :: x1, x2, vz, gammaL
 real :: position_conv=1.0e6, time_conv=1e12, momentum_conv, speed_light
 character(80) :: fileIn
 
@@ -145,14 +145,17 @@ do i=1*nFreq,nStep, nFreq
     etaP0(:) = etaP(:)-gammaXP(:)**2.0/sigmaX(:)
     meanX(:)=meanX(:)/real(j)
     meanP(:)=meanP(:)/real(j)
-    vz=meanP(3)/sqrt(1+(meanP(3)/speed_light)**2.0)
+    gammaL=sqrt(1+(meanP(3)/speed_light)**2.0)
+    vz=meanP(3)/gammaL
 
-    write(41,*) time(i),j*nMacroParticle,meanX(3),vz,sqrt(sigmaX),gammaXP,sqrt(etaP)
+    write(41,*) time(i),meanX(3),vz,gammaL,sqrt(sigmaX(1)),sqrt(sigmaX(3)),gammaXP(1),gammaXP(3),sqrt(etaP(1)),sqrt(etaP(3)),j*nMacroParticle
+    !write(41,*) time(i),j*nMacroParticle,meanX(3),vz,sqrt(sigmaX),gammaXP,sqrt(etaP)
 end do
 write(*,*) "initial values to use"
 write(*,*) "Ne", j*nMacroParticle
 write(*,*) "velocity vz",vz
-write(*,*) sqrt(sigmaX),gammaXP,sqrt(etaP0)
+write(*,*) sqrt(sigmaX(1:2)),sqrt(sigmaX(3))*gammaL,gammaXP,sqrt(etaP0(1:2)),sqrt(etaP0(3))/gammaL
+!write(*,*) sqrt(sigmaX),gammaXP,sqrt(etaP0)
 write(*,*) "length acceleration gap", 45.0E3-meanX(3)
 
 end subroutine AGParameters
