@@ -148,7 +148,7 @@ do i=1*nFreq,nStep, nFreq
     gammaL=sqrt(1+(meanP(3)/speed_light)**2.0)
     vz=meanP(3)/gammaL
 
-    write(41,*) time(i),meanX(3),vz,gammaL,sqrt(sigmaX(1)),sqrt(sigmaX(3)),gammaXP(1),gammaXP(3),sqrt(etaP(1)),sqrt(etaP(3)),j*nMacroParticle
+    write(41,*) time(i),meanX(3),vz,gammaL,sqrt(sigmaX(1)),sqrt(sigmaX(3)),gammaXP(1),gammaXP(3),sqrt(etaP0(1)),sqrt(etaP0(3)),j*nMacroParticle
     !write(41,*) time(i),j*nMacroParticle,meanX(3),vz,sqrt(sigmaX),gammaXP,sqrt(etaP)
 end do
 write(*,*) "initial values to use"
