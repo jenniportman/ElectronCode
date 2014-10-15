@@ -154,7 +154,7 @@ end do
 write(*,*) "initial values to use"
 write(*,*) "Ne", j*nMacroParticle
 write(*,*) "velocity vz",vz
-write(*,*) sqrt(sigmaX(1:2)),sqrt(sigmaX(3))*gammaL,gammaXP,sqrt(etaP0(1:2)),sqrt(etaP0(3))/gammaL
+write(*,*) sqrt(sigmaX(1)),sqrt(sigmaX(3))*gammaL,gammaXP(1),gammaXP(3),sqrt(etaP0(1)),sqrt(etaP0(3))/gammaL
 !write(*,*) sqrt(sigmaX),gammaXP,sqrt(etaP0)
 write(*,*) "length acceleration gap", 45.0E3-meanX(3)
 
